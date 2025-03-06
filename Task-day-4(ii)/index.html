@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+<!-- import { useState } from "react";
+
+export default function ModalWithBlur() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      {/* Open Modal Button */}
+      <button
+        onClick={() => setIsOpen(true)}
+        className="px-4 py-2 font-semibold text-white bg-teal-500 rounded-lg shadow-md hover:bg-teal-600"
+      >
+        Open Modal
+      </button>
+
+      {/* Modal */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ease-in-out"
+          onClick={() => setIsOpen(false)}
+        >
+          <div
+            className="w-96 p-6 bg-white rounded-lg shadow-lg transform transition-transform duration-300 scale-100"
+            onClick={(e) => e.stopPropagation()} // Prevent click from closing modal
+          >
+            <h2 className="text-xl font-bold text-gray-800">Modal Title</h2>
+            <p className="mt-4 text-gray-600">
+              This is a modal with a smooth transition and a blurred background.
+            </p>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="mt-4 px-4 py-2 font-semibold text-white bg-teal-500 rounded-lg shadow-md hover:bg-teal-600"
+            >
+              Close Modal
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+} -->

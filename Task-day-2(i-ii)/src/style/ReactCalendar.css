@@ -1,0 +1,20 @@
+.calendar-container {
+    width: 600px;
+    background-color: black !important;
+  }
+
+  .react-calendar {
+    width: 100%;
+    border: none;
+  }
+  
+  .react-calendar__tile--active {
+    background-color: #0d6efd !important; /* Bootstrap primary color */
+    color: white !important;
+  }
+  
+  .react-calendar__tile {
+    background-color: #e9ecef !important; /* Bootstrap secondary color */
+    color: black !important;
+  }
+  

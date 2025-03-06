@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+
+<!-- import React, { createContext, useState, useEffect, useContext } from "react";
+
+const ThemeContext = createContext();
+
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => useContext(ThemeContext);
+
+import React from "react";
+import { FaClock, FaComment, FaSun, FaMoon } from "react-icons/fa";
+import { useTheme } from "./ThemeContext";
+
+const Blog = () => {
+  const { theme, toggleTheme } = useTheme();
+
+  const BlogData = [
+    {
+      img: "src/assets/img-1.jpg",
+      tag: "Wow",
+      title: "Simple Salad Recipe ever",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      time: "6 min ago",
+      comments: "39 comments",
+    },
+    // Add more blogs as required...
+  ];
+
+  return (
+    <div
+      className={`min-h-screen ${
+        theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-black"
+      } transition-colors duration-300`}
+    >
+      {/* Theme Toggle Button */}
+      <div className="flex justify-end p-4">
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-full bg-gray-300 dark:bg-gray-600"
+        >
+          {theme === "dark" ? <FaSun size={20} /> : <FaMoon size={20} />}
+        </button>
+      </div>
+
+      {/* Blog Cards */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-8xl place-items-center px-4 sm:px-6 lg:px-16 py-8 lg:py-16">
+        {BlogData.map((blog, index) => (
+          <div
+            key={index}
+            className={`relative w-full max-w-sm border shadow-lg rounded-lg overflow-hidden ${
+              theme === "dark" ? "bg-gray-800 text-gray-100" : "bg-white text-gray-900"
+            }`}
+          >
+            {/* Image Section */}
+            <div className="relative">
+              <span className="absolute top-4 left-4 bg-primary text-white px-4 py-2 rounded-md">
+                {blog.tag}
+              </span>
+              <img
+                src={blog.img}
+                alt={blog.title}
+                className="w-full h-64 object-cover"
+              />
+            </div>
+
+            {/* Text Section */}
+            <div className="px-6 py-4">
+              <h3 className="text-lg font-bold">{blog.title}</h3>
+              <p className="text-sm mt-2">{blog.description}</p>
+            </div>
+
+            {/* Footer Section */}
+            <div className="flex justify-between items-center px-6 py-4">
+              <div className="flex items-center gap-2 text-sm">
+                <FaClock />
+                {blog.time}
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <FaComment />
+                {blog.comments}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Blog; -->
