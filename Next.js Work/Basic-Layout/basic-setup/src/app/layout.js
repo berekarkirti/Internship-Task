@@ -5,7 +5,7 @@ import "./globals.css";
 import Header from "@/layout/header";
 import Footer from "@/layout/footer";
 import { Provider } from 'react-redux';
-import store from '../redux/store';
+import store from '../redux-counter/store';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
