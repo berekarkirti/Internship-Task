@@ -4,7 +4,7 @@ import { FaAnchorCircleCheck } from "react-icons/fa6";
 
 const Feature = () => {
   return (
-    <section className="absolute z-10 shadow-lg px-10 py-8 bg-secondary -mt-24 mx-44 h-60 w-[1400px]">
+    <section className="absolute z-10 shadow-lg  py-9 bg-secondary -mt-24 mx-44 h-60 w-[1360px]">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
           {FeaturesData.map((feature) => (

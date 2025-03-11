@@ -54,8 +54,8 @@ const Footer = () => {
       </footer>
 
       {/* Footer Bottom Section */}
-      <div className="bg-black pt-4 text-center text-white py-10">
-        <p className="mt-10">{FooterData.copyright}</p>
+      <div className="bg-black -mt-2 text-center text-white py-6">
+        <p className="mt-5">{FooterData.copyright}</p>
       </div>
     </div>
   );

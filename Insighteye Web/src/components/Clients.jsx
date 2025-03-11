@@ -7,7 +7,7 @@ import { Autoplay } from "swiper/modules";
 
 const Clients = () => {
   return (
-    <section className="bg-gradient-to-r from-pink-500 to-orange-500 py-32">
+    <section className="bg-gradient-to-r from-pink-500 to-orange-500 py-28">
       <div className="container mx-auto px-40">
         <Swiper modules={[Autoplay]} slidesPerView={5} spaceBetween={10} loop={true} autoplay={{ delay: 3000 }} className="mySwiper">
           {ClientsData.map((client) => (

@@ -6,7 +6,7 @@ const Service = () => {
 
 
   return (
-    <section className="bg-gray-100 py-40  text-center ">
+    <section className="bg-gray-100 py-20  text-center ">
       <div className="container mx-auto px-32">
 
         <div className="mb-12">
@@ -20,13 +20,13 @@ const Service = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {ServiceData.map((service) => (
             <div key={service.id} className="bg-white shadow-md overflow-hidden">
-              <div className="relative">
+              <div className="relative ">
                 <img src={service.image} alt={service.title} className="w-full" />
                 <div className="absolute top-4 left-4 bg-red-500 text-white text-sm px-3 py-1 rounded-full">
                   {service.category}
                 </div>
               </div>
-              <div className="p-10">
+              <div className="p-10 h-[240px]">
                 <h3 className="text-xl font-bold">
                   <a href={service.link}>{service.title}</a>
                 </h3>
