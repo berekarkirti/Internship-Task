@@ -1,12 +1,12 @@
 "use client";
 
-import { addTodo, removeTodo, toggleComplete } from '@/redux-todo/todoSlice';
+import { addTodo, removeTodo, toggleComplete } from '@/redux-counter/todo/todoSlice';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Home2 = () => {
   const [newTodo, setNewTodo] = useState('');
-  const todos = useSelector((state) => state.todos || []); // Fallback to an empty array
+  const todos = useSelector((state) => state.todos || []); 
   const dispatch = useDispatch();
 
   const handleAddTodo = () => {

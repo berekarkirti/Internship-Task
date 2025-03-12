@@ -1,14 +1,15 @@
-// todoSlice.js
+"use client"
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const todoSlice = createSlice({
   name: 'todos',
-  initialState: [], // Initial state as an empty array
+  initialState: [], 
   reducers: {
     addTodo: (state, action) => {
       state.push({
-        id: Date.now(), // Unique ID for each todo
-        text: action.payload, // Payload contains the todo text
+        id: Date.now(),
+        text: action.payload,
         completed: false,
       });
     },

@@ -1,6 +1,6 @@
 'use client';
 
-import { decrement, increment } from '@/redux-counter/exampleSlice';
+import { decrement, increment } from '@/redux-counter/counter/exampleSlice';
 import { useState  , useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
