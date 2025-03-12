@@ -30,6 +30,7 @@ export const editProducts = createAsyncThunk('products/editProducts', async (dat
 });
 
 export const deleteProducts = createAsyncThunk('products/deleteProducts', async (id) => {
+    console.log("Deleting ID:", id);
     try 
     {
         const res = await axios.delete(`http://localhost:9091/books/delete/${id}`);

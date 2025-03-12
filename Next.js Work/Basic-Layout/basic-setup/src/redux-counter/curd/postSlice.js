@@ -7,6 +7,7 @@ const productsSlice = createSlice({
         items: [], 
         status: 'idle', 
         error: null,
+        // loading: 'true'
     },
     reducers: {},
     extraReducers: (builder) => {
