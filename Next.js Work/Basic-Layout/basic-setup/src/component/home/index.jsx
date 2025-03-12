@@ -7,7 +7,6 @@ import Home4 from './home4'
 const Home = () => {
   return (
     <>
-    {/* <div ></div> */}
       <Home1 />
       <Home2 />
       <Home3 />
