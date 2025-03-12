@@ -11,7 +11,7 @@ const BookAdd = () => {
       .then((res) => {
         console.log(res.data);
         alert("Books Added !");
-        setBook({ Title: '', Author: '', Price: '', Description: '', ISBN: '', PublishedDate:'' })
+        setBook({ Title: '', Author: '', Price: '', Description: '', ISBN: '', PublishedDate: '' })
       })
       .catch((err) => {
         console.log(err);
@@ -36,14 +36,14 @@ const BookAdd = () => {
         <input type="number" name="Price" value={book.Price} onChange={handleChange} />
 
         <label htmlFor="">Description</label>
-        <textarea type="text" name="Description" value={book.Description}  onChange={handleChange} />
+        <textarea type="text" name="Description" value={book.Description} onChange={handleChange} />
 
         <label>ISBN</label>
         <input type="text" name="ISBN" value={book.ISBN} onChange={handleChange} />
-        
+
         <label>PublishedDate</label>
-        <input type="date" name='PublishedDate' value={book.PublishedDate} onChange={handleChange}/>
-        
+        <input type="date" name='PublishedDate' value={book.PublishedDate} onChange={handleChange} />
+
         <button>Add Book</button>
       </form>
     </div>
