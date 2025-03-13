@@ -25,5 +25,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.light {
+  background-color: white;
+  color: black;
+}
 
-
+.dark {
+  background-color: black;
+  color: white;
+}

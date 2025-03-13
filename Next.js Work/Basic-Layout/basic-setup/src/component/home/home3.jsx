@@ -22,7 +22,8 @@ export default function home3() {
 
   }, [dispatch]);
 
-  const handleCreate = () => {
+  const handleCreate = () => 
+  {
     if (newProduct.title && newProduct.price && newProduct.category && newProduct.image) 
     {
       dispatch(createProduct(newProduct));
@@ -51,7 +52,10 @@ export default function home3() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
+
+
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Product List</h1>
+
 
       <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md mb-8">
         <h2 className="text-2xl font-semibold text-gray-700 mb-4">{editProduct ? "Update Product" : "Add Product"}</h2>
@@ -83,6 +87,8 @@ export default function home3() {
           </div>
         ))}
       </div>
+
+
     </div>
   );
 }

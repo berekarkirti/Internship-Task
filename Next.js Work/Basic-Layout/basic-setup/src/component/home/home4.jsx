@@ -11,7 +11,7 @@ const home4 = () => {
   return (
     <div className={`${theme} min-h-screen`}>
       <button onClick={() => dispatch(toggleTheme())} className="p-2 bg-gray-300 rounded hover:bg-gray-400 transition">
-        Switch to {theme === "light" ? "Dark" : "Light"} Theme
+        {theme === "light" ? "Dark" : "Light"} Theme
       </button>
     </div>
   );
