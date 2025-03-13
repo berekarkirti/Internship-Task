@@ -1,59 +1,34 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-export const getProducts = createAsyncThunk('products/getProducts', async () => {
-    try 
-    {
-        const res = await axios.get('http://localhost:9091/books/get');
-        console.log('Fetched Products:', res.data);
-        return res.data;
-    } 
-    catch (error) 
-    {
-        console.error('Error in fetch:', error);
-        throw error;
-    }
+
+const API_URL = "https://fakestoreapi.com/products";
+
+// Fetch all products
+export const fetchProducts = createAsyncThunk("products/fetch", async () => {
+    const response = await axios.get(API_URL);
+    console.log(response)
+    return response.data;
 });
 
-export const editProducts = createAsyncThunk('products/editProducts', async (data) => {
-    try 
-    {
-        const res = await axios.put('http://localhost:9091/books/edit', data);
-        console.log('Edited Product:', res.data);
-        return res.data;
-    } 
-    catch (error) 
-    {
-        console.error('Error in edit:', error);
-        throw error;
-    }
+// Create a new product
+export const createProduct = createAsyncThunk("products/create", async (product) => {
+    const response = await axios.post(API_URL, product);
+    console.log(response)
+    return response.data;
 });
 
-export const deleteProducts = createAsyncThunk('products/deleteProducts', async (id) => {
-    console.log("Deleting ID:", id);
-    try 
-    {
-        const res = await axios.delete(`http://localhost:9091/books/delete/${id}`);
-        console.log('Deleted Product:', res.data);
-        return id;
-    } 
-    catch (error) 
-    {
-        console.error('Error in delete :', error);
-        throw error;
-    }
+// Update a product
+export const updateProduct = createAsyncThunk("products/update", async ({ id, data }) => {
+    const response = await axios.put(`${API_URL}/${id}`, data);
+    console.log(response);
+    console.log("Update Response:", response.data);
+    return response.data;
 });
 
-export const addProducts = createAsyncThunk('products/addProducts', async (data) => {
-    try 
-    {
-        const response = await axios.post('http://localhost:9091/books/create', data);
-        console.log('Added Product:', res.data);
-        return res.data;
-    } 
-    catch (error) 
-    {
-        console.error('Error in add:', error);
-        throw error;
-    }
+// Delete a product
+export const deleteProduct = createAsyncThunk("products/delete", async (id) => {
+    await axios.delete(`${API_URL}/${id}`);
+    console.log("Delete Response:", id);
+    return id;
 });
