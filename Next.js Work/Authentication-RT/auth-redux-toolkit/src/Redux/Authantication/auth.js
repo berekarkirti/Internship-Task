@@ -1,7 +1,7 @@
 export async function authenticateUser({ email, password }) {
 
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
+ 
       if (email === "user@example.com" && password === "password123") 
       {
         resolve(
@@ -14,6 +14,6 @@ export async function authenticateUser({ email, password }) {
       {
         reject("Invalid credentials");
       }
-    }, 1000);
+ 
   });
 }
