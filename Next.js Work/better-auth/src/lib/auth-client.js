@@ -1,33 +1,24 @@
-// import {createAuthClient} from "better-auth/react";
+import { createAuthClient } from "better-auth/client";
 
-
-// export const authClient = createAuthClient({
-//     baseURL: process.env.NEXT_PUBLIC_APP_URL,
-
-// })
-
-// export const {
-//     signIn,
-//     signOut,
-//     signUp,
-//     useSession
-// } = authClient;
-
-import { createAuthClient } from "better-auth/client"
 const authClient = createAuthClient({
-    baseURL: process.env.NEXT_PUBLIC_APP_URL,
+  baseURL: process.env.NEXT_PUBLIC_APP_URL, // Ensure this is set correctly
+});
 
-})
-
-export const signIn = async () => {
-    const data = await authClient.signIn.social({
-        provider: "github"
-    })
-}
+export const signIn = async( provider , options = {}) => {
+  try {
+    const result = await authClient.signIn({
+      provider , 
+      redirect: true,
+    });
+    return result;
+  } catch (error) {
+    console.error("Error during social sign-in:", error.message);
+    return { error: error.message };
+  }
+};
 
 export const {
-    signOut,
-    signUp,
-    useSession
+  signOut,
+  signUp,
+  useSession,
 } = authClient;
-

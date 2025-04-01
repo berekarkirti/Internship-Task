@@ -1,12 +1,13 @@
 import React from 'react'
-import Home2 from './Home2'
 import MainMenu from './MainMenu '
+import ProductCard from './ProductCard'
 
 
 const Home = () => {
   return (
     <>
       <MainMenu />
+      <ProductCard />
     </>
   )
 }
