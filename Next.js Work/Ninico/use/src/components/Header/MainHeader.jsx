@@ -12,7 +12,7 @@ const MainHeader = () => {
     <div className="mt-4 hidden xl:block p-3">
       <div className="mx-auto flex justify-between items-center gap-6">
         <div className="flex items-center w-full">
-        
+
           <div className="w-1/8 xl:w-1/6 lg:w-1/4">
             <div className="logo">
               <Link href="/">
@@ -21,7 +21,7 @@ const MainHeader = () => {
             </div>
           </div>
 
-  
+
           <div className="xl:w-5/6 lg:w-3/4 flex items-center justify-between gap-10">
 
             <div className="header-search-bar flex-1">

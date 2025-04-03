@@ -25,7 +25,7 @@ const banners = [
         id: 3,
         title: 'Exclusive Deals',
         discount: '30% Off',
-        description: 'Limited Time Offer',
+        description: 'Limited Time',
         image: banner3,
     },
 ];

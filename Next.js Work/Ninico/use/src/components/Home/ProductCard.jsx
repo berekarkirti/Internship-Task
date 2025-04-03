@@ -36,7 +36,8 @@ export default function ProductCard()
         (
           products.map((product) =>
          (
-            <div key={product.id} className="border rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
+            <div key={product.id} className="border border-[#d61142] rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
+
               <h2 className="text-xl font-semibold mb-2">{product.title}</h2>
               <p className="text-gray-600 text-sm mb-4">{product.description}</p>
               <p className="text-lg font-semibold">Price: ${product.price}</p>
