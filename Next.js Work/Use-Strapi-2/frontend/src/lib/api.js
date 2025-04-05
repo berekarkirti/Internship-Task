@@ -1,41 +1,9 @@
-// import axios from "axios";
-
-// const API_URL = "http://localhost:1337/api/products?populate=*";
-
-// export const getProducts = async () => 
-// {
-//     try
-//     {
-//         const res = await axios.get(API_URL);
-//         return res.data.data; 
-//     } 
-//     catch (err) 
-//     {
-//         console.error("Error fetching products:", err);
-//         return null;  
-//     }
-// };
-
-// export const getProductById = async (id) => 
-// {
-//     try 
-//     {
-//         const res = await axios.get(`${API_URL}/${id}`);
-//         return res.data.data; 
-//     } 
-//     catch (err) 
-//     {
-//         console.error("Error fetching product by ID:", err);
-//         return null;  
-//     }
-// }
-
 import axios from "axios";
 
 const API_URL = "http://localhost:1337/api/products";
 
 
-export const getProducts = async () =>
+export const get = async () =>
 {
   try 
   {
@@ -50,22 +18,23 @@ export const getProducts = async () =>
 };
 
 
-export const getProductById = async (id) => 
+export const getById = async (documentId) => 
 {
   try 
   {
-    const response = await axios.get(`${API_URL}/${id}?populate=*`);
+    const response = await axios.get(`${API_URL}/${documentId}?populate=*`);
+    console.log(response)
     return response.data.data;
   } 
   catch (error) 
   {
-    console.error(`Error fetching product with ID ${id}:`, error);
+    console.error(`Error fetching product with ID ${documentId}:`, error);
     return null;
   }
 };
 
 
-export const createProduct = async (productData) => 
+export const create = async (productData) => 
 {
   try 
   {
@@ -80,30 +49,35 @@ export const createProduct = async (productData) =>
 };
 
 
-export const updateProduct = async (id, updatedData) => 
+export const update = async (documentId, updatedData) => 
+{
+    try 
+    {
+      const response = await axios.put(`${API_URL}/${documentId}`, 
+      {
+        data: {name: updatedData.name,price: updatedData.price,},
+      });
+      // console.log(response.data.data);
+      return response.data.data;
+    } 
+    catch (error) 
+    {
+      console.error(`Error updating product with ID ${documentId}:`, error);
+      return null;
+    }
+  };
+  
+
+export const deleteProduct = async (documentId) => 
 {
   try 
   {
-    const response = await axios.put(`${API_URL}/${id}`, { data: updatedData });
-    return response.data.data;
+    await axios.delete(`${API_URL}/${documentId}`);
+    return true;  
   } 
   catch (error) 
   {
-    console.error(`Error updating product with ID ${id}:`, error);
-    return null;
-  }
-};
-
-
-export const deleteProduct = async (id) => 
-{
-  try 
-  {
-    await axios.delete(`${API_URL}/${id}`);
-    return true;
-  } 
-  catch (error) {
-    console.error(`Error deleting product with ID ${id}:`, error);
+    console.error(`Error deleting product with ID ${documentId}:`, error);
     return false;
   }
 };
