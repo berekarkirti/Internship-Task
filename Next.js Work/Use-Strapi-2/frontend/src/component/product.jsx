@@ -97,14 +97,14 @@ const ProductComponent = () => {
             }
 
           }}
-          className="bg-yellow-100 border border-yellow-300 p-6 rounded-lg shadow-md space-y-4">
-          <h2 className="text-lg font-semibold text-yellow-700">Update Product</h2>
+          className="bg-white border border-gray-300 p-6 rounded-lg shadow-md space-y-4">
+          <h2 className="text-lg font-semibold text-teal-700">Update Product</h2>
           <div>
-            <label className="block text-sm font-medium text-gray-700"> Name </label> <input type="text" value={selectedProduct.name} onChange={(e) =>setSelectedProduct({ ...selectedProduct, name: e.target.value })}className="mt-1 p-2 w-full border rounded focus:ring-2 focus:ring-yellow-400"required/>
+            <label className="block text-sm font-medium text-gray-700"> Name </label> <input type="text" value={selectedProduct.name} onChange={(e) =>setSelectedProduct({ ...selectedProduct, name: e.target.value })}className=" text-black mt-1 p-2 w-full border rounded focus:ring-2 focus:ring-yellow-400"required/>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Price</label>
-            <input type="number" value={selectedProduct.price} onChange={(e) =>setSelectedProduct({ ...selectedProduct, price: e.target.value })}className="mt-1 p-2 w-full border rounded focus:ring-2 focus:ring-yellow-400"required/>
+            <input type="number" value={selectedProduct.price} onChange={(e) =>setSelectedProduct({ ...selectedProduct, price: e.target.value })}className=" text-black mt-1 p-2 w-full border rounded focus:ring-2 focus:ring-yellow-400"required/>
           </div>
           <div className="flex justify-end space-x-3">
             <button type="button" onClick={() => setSelectedProduct(null)} className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500" >Cancel</button>
