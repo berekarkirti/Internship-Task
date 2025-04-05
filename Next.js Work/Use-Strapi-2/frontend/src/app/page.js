@@ -1,10 +1,26 @@
-import Product from "@/component/product";
+'use client';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
+const Home = () =>
+{
+  const router = useRouter();
 
-export default function Home() {
-  return (
-    <>
-      <Product/>
-    </>
-  );
+  useEffect(() => 
+  {
+    const token = localStorage.getItem('token');
+
+    if (token) 
+    {
+      router.push('/product'); 
+    } 
+    else 
+    {
+      router.push('/login');
+    }
+  }, []);
+
+  return null;
 }
+
+export default Home;
