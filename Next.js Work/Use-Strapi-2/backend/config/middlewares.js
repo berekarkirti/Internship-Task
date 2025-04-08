@@ -13,9 +13,11 @@ module.exports = [
   {
     name: 'strapi::cors',
     config: {
+      origin: ['http://localhost:3000'],
+      credentials: true,
       enabled: true,
       headers: '*',
-      methods: ['GET', 'POST', 'PUT', 'DELETE'], // Ensure DELETE is present
+      methods: ['GET', 'POST', 'PUT', 'DELETE'], 
     },
   },
 ];

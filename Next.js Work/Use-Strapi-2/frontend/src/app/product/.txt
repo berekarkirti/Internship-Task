@@ -1,0 +1,44 @@
+const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      let imageIds = [];
+  
+      // Only upload if new image(s) are selected
+      if (image.length > 0 && image[0] instanceof File) {
+        const formData = new FormData();
+        image.forEach((img) => formData.append("files", img));
+  
+        const uploadResponse = await fetch("http://localhost:1337/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+  
+        const uploadedFiles = await uploadResponse.json();
+        imageIds = uploadedFiles.map((file) => file.id);
+      } else {
+        // If no new images selected, keep existing ones (if needed)
+        imageIds = image.map((img) => img.id); // if already uploaded
+      }
+  
+      // Update blog
+      await fetch(http://localhost:1337/api/products/${id}, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: {
+            name,
+            image: imageIds,
+          },
+        }),
+      });
+  
+      alert("Blog updated successfully!");
+      router.push('/blog');
+    } catch (error) {
+      console.error("Error updating blog:", error);
+      alert("An error occurred while updating the blog.");
+    }
+  };
