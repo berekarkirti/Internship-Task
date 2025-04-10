@@ -132,7 +132,9 @@ const ProductComponent = () => {
     e.preventDefault();
 
     console.log('addNames:', addNames, 'addImages:', addImages);
-    if (!addNames.en.trim() || !addPrice.trim() || addImages.en.length === 0) {
+    
+    if (!addNames.en.trim() || !addPrice.trim() || addImages.en.length === 0)
+    {
       alert('Please enter English name, price, and at least one image for English.');
       return;
     }
