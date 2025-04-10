@@ -131,8 +131,8 @@ const ProductComponent = () => {
   {
     e.preventDefault();
 
-    if (!addNames.en.trim() || !addPrice.trim() || addImages.en.length === 0) 
-    {
+    console.log('addNames:', addNames, 'addImages:', addImages);
+    if (!addNames.en.trim() || !addPrice.trim() || addImages.en.length === 0) {
       alert('Please enter English name, price, and at least one image for English.');
       return;
     }
@@ -456,6 +456,7 @@ const ProductComponent = () => {
               </div>
               <h2 className="text-2xl font-semibold text-gray-800">{item?.name}</h2>
               <h2 className="text-lg text-gray-600">${item?.price}</h2>
+              <p className="text-md font-semibold text-gray-600">Category : {item?.category?.category}</p>
               <div className="space-x-4"> 
                 <button onClick={() => handleEdit(item)} className="bg-teal-600 text-white py-3 px-6 rounded-md hover:bg-teal-700 transition duration-300 shadow-md" > Edit </button> 
                 <button onClick={() => handleDelete(item.documentId)} className="bg-red-500 text-white py-3 px-6 rounded-md hover:bg-red-600 transition duration-300 shadow-md" > Delete </button>
