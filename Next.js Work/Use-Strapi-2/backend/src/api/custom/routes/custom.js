@@ -4,8 +4,6 @@
  * product router
  */
 
-'use strict';
-
 module.exports = {
   routes: [
     {
@@ -18,5 +16,26 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: 'GET',
+      path: '/high-stock-products',
+      handler: 'custom.highStockProducts',
+      config: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: 'GET',
+      path: '/category-stock-summary',
+      handler: 'custom.categoryStockSummary',
+      config: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
+
