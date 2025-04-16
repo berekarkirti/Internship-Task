@@ -1,13 +1,15 @@
 import React from "react";
 import Layout from "../components/Layout";
 
-const dashboardData = {
+const dashboardData = 
+{
   totalStock: 150,
   totalProducts: 25,
   totalCategories: 5,
 };
 
-const Dashboard = () => {
+const Dashboard = () => 
+{
   return (
     <Layout>
       <div className="p-6 rounded-lg mx-auto min-h-[calc(100vh-12rem)] flex flex-col justify-between bg-gradient-to-br from-gray-50 to-white text-center">

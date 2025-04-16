@@ -109,10 +109,10 @@
 //                 },
 //             });
 //             console.log("Create product response:", response.data);
-//             setProducts([...products, response.data.data]);
 //             setShowModal(false);
 //             setFormData({ Name: "", Price: "", Stock: "", category: "", Image: [] });
 //             alert("Product added successfully");
+//             window.location.reload(); // Refresh page
 //         } catch (err) {
 //             console.error("Failed to add product:", err);
 //             console.error("Error response:", err.response?.data);
@@ -335,7 +335,7 @@
 //                                             attributes.Name ||
 //                                             attributes.title ||
 //                                             attributes.categoryName ||
-//                                             `Category ${category.id}`;
+//                                             `${category.Name}`;
 //                                         return (
 //                                             <option key={category.id} value={category.id} className="capitalize">
 //                                                 {name}
@@ -398,6 +398,8 @@ const Product = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [showModal, setShowModal] = useState(false);
+    const [modalMode, setModalMode] = useState("add"); // 'add' or 'edit'
+    const [selectedProductId, setSelectedProductId] = useState(null); // Track product being edited
     const [formData, setFormData] = useState({
         Name: "",
         Price: "",
@@ -447,7 +449,7 @@ const Product = () => {
         });
     };
 
-    // Handle form submission
+    // Handle form submission for adding a product
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -505,6 +507,87 @@ const Product = () => {
         }
     };
 
+    // Handle form submission for editing a product
+    const handleEditSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const token = localStorage.getItem("token");
+            console.log("Authorization token:", token);
+            if (!token) {
+                throw new Error("No authentication token found in localStorage");
+            }
+
+            let imageIds = [];
+            if (formData.Image && formData.Image.length > 0) {
+                console.log("Uploading images:", formData.Image.map((file) => file.name));
+                const imageFormData = new FormData();
+                formData.Image.forEach((file) => {
+                    imageFormData.append("files", file);
+                });
+                const uploadResponse = await axios.post("http://localhost:1337/api/upload", imageFormData, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                console.log("Upload response:", uploadResponse.data);
+                imageIds = uploadResponse.data.map((file) => file.id);
+            }
+
+            const categoryId = formData.category && !isNaN(parseInt(formData.category)) ? parseInt(formData.category) : null;
+            console.log("Selected category ID:", categoryId);
+            console.log("Image IDs:", imageIds);
+
+            const productData = {
+                data: {
+                    Name: formData.Name,
+                    Price: parseFloat(formData.Price),
+                    Stock: parseInt(formData.Stock),
+                    category: categoryId ? { connect: [{ id: categoryId }] } : { disconnect: [] },
+                    Image: imageIds.length > 0 ? imageIds : null,
+                },
+            };
+
+            console.log("Updating product with data:", productData);
+            const response = await axios.put(`http://localhost:1337/api/products/${selectedProductId}`, productData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log("Update product response:", response.data);
+
+            // Update the product in the state
+            setProducts(
+                products.map((product) =>
+                    product.documentId === selectedProductId ? { ...product, ...response.data.data } : product
+                )
+            );
+            setShowModal(false);
+            setFormData({ Name: "", Price: "", Stock: "", category: "", Image: [] });
+            setModalMode("add");
+            setSelectedProductId(null);
+            alert("Product updated successfully");
+            window.location.reload(); // Refresh page
+        } catch (err) {
+            console.error("Failed to update product:", err);
+            console.error("Error response:", err.response?.data);
+            alert("Failed to update product: " + (err.response?.data?.error?.message || err.message));
+        }
+    };
+
+    // Open edit modal with pre-filled data
+    const handleEditClick = (product) => {
+        setModalMode("edit");
+        setSelectedProductId(product.documentId);
+        setFormData({
+            Name: product.Name || "",
+            Price: product.Price?.toString() || "",
+            Stock: product.Stock?.toString() || "",
+            category: product.category?.id?.toString() || "",
+            Image: [], // Images will be re-uploaded if changed
+        });
+        setShowModal(true);
+    };
+
     // Filter products based on search and category
     const filteredProducts = products.filter((product) => {
         const matchesSearch = product.Name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -534,7 +617,11 @@ const Product = () => {
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-extrabold text-gray-800 drop-shadow-md">Product Management</h2>
                     <button
-                        onClick={() => setShowModal(true)}
+                        onClick={() => {
+                            setModalMode("add");
+                            setFormData({ Name: "", Price: "", Stock: "", category: "", Image: [] });
+                            setShowModal(true);
+                        }}
                         className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md hover:shadow-lg"
                     >
                         + Add Product
@@ -612,7 +699,10 @@ const Product = () => {
                                 <td className="p-3 text-gray-800">{product.Stock}</td>
                                 <td className="p-3 text-gray-800">{product.category?.Name || "N/A"}</td>
                                 <td className="p-3 flex space-x-4">
-                                    <button className="text-blue-600 hover:text-blue-800 transition duration-200">
+                                    <button
+                                        onClick={() => handleEditClick(product)}
+                                        className="text-blue-600 hover:text-blue-800 transition duration-200"
+                                    >
                                         <svg
                                             className="w-6 h-6"
                                             fill="none"
@@ -652,12 +742,14 @@ const Product = () => {
                 </table>
             </div>
 
-            {/* Modal for adding product */}
+            {/* Modal for adding/editing product */}
             {showModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-                        <h3 className="text-xl font-bold text-gray-800 mb-4">Add New Product</h3>
-                        <form onSubmit={handleSubmit}>
+                        <h3 className="text-xl font-bold text-gray-800 mb-4">
+                            {modalMode === "add" ? "Add New Product" : "Edit Product"}
+                        </h3>
+                        <form onSubmit={modalMode === "add" ? handleSubmit : handleEditSubmit}>
                             <div className="mb-4">
                                 <label htmlFor="Name" className="block text-sm font-medium text-gray-700">
                                     Name
@@ -746,7 +838,12 @@ const Product = () => {
                             <div className="flex justify-end space-x-2">
                                 <button
                                     type="button"
-                                    onClick={() => setShowModal(false)}
+                                    onClick={() => {
+                                        setShowModal(false);
+                                        setFormData({ Name: "", Price: "", Stock: "", category: "", Image: [] });
+                                        setModalMode("add");
+                                        setSelectedProductId(null);
+                                    }}
                                     className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition duration-200"
                                 >
                                     Cancel
@@ -755,7 +852,7 @@ const Product = () => {
                                     type="submit"
                                     className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
                                 >
-                                    Add Product
+                                    {modalMode === "add" ? "Add Product" : "Update Product"}
                                 </button>
                             </div>
                         </form>
