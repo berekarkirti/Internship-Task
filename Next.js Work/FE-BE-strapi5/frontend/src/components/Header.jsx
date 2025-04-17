@@ -6,6 +6,7 @@ import { useUser } from "./UserContext";
 import { FaUserCircle, FaCaretDown } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
+import profile2 from "../../public/profile2.png";
 
 const Header = () => 
 {
@@ -56,7 +57,7 @@ const Header = () =>
 
       {isClient && user && (
         <div className="flex items-center space-x-4">
-          <Image src={profileImageUrl} alt={user.displayName || "User Profile"} width={48} height={48} className="rounded-full border-2 border-blue-200 shadow-md transition-transform duration-300 hover:scale-110" />
+          <Image src={profile2} alt={user.displayName || "User Profile"} width={48} height={48} className="rounded-full border-2 border-blue-200 shadow-md transition-transform duration-300 hover:scale-110" />
           <div className="relative">
 
             <div className="flex items-center space-x-2 cursor-pointer group">

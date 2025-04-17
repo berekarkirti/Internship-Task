@@ -242,6 +242,7 @@ const Product = () =>
         return matchesSearch && matchesCategory;
     });
 
+
     if (loading) 
     {
         return(
@@ -251,6 +252,7 @@ const Product = () =>
         );
     }
 
+
     if (error) 
     {
         return (
@@ -259,6 +261,7 @@ const Product = () =>
             </Layout>
         );
     }
+
 
     return (
         <Layout>
@@ -389,40 +392,17 @@ const Product = () =>
                             </div>
                             
                             <div className="mb-4">
-                                <label htmlFor="Image" className="block text-sm font-medium text-gray-700">
-                                    Images
-                                </label>
-                                <input
-                                    type="file"
-                                    id="Image"
-                                    name="Image"
-                                    onChange={handleInputChange}
-                                    accept="image/*"
-                                    multiple
-                                    className="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
+                                <label htmlFor="Image" className="block text-sm font-medium text-gray-700">Images</label>
+                                <input type="file" id="Image" name="Image" onChange={handleInputChange} accept="image/*" multiple className="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
+
                             <div className="flex justify-end space-x-2">
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        setShowModal(false);
-                                        setFormData({ Name: "", Price: "", Stock: "", category: "", Image: [] });
-                                        setModalMode("add");
-                                        setSelectedProductId(null);
-                                    }}
-                                    className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition duration-200"
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
-                                >
-                                    {modalMode === "add" ? "Add Product" : "Update Product"}
-                                </button>
+                                <button type="button" onClick={() => { setShowModal(false); setFormData({ Name: "", Price: "", Stock: "", category: "", Image: [] }); setModalMode("add"); setSelectedProductId(null); }} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition duration-200" >Cancel</button>
+                                <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200" >{modalMode === "add" ? "Add Product" : "Update Product"}</button>
                             </div>
+
                         </form>
+                        
                     </div>
                 </div>
             )}

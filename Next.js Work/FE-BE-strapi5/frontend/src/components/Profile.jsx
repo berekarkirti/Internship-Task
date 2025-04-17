@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
 import { useUser } from "./UserContext";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import profile2 from "../../public/profile2.png";
 
 const Profile = () => 
 {
@@ -46,7 +48,15 @@ const Profile = () =>
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
 
           <div className="flex items-center space-x-6">
-            <img src={user?.photoURL} alt="Profile" className="w-24 h-24 rounded-full border-4 border-purple-200 object-cover shadow-md" />
+            <Image
+              src={profile2} 
+              alt="Profile"
+              width={96}
+              height={96}
+              className="rounded-full border-4 border-purple-200 shadow-md"
+              objectFit="cover" 
+            />
+
             <div className="flex flex-col">
               <h2 className="text-2xl font-semibold text-gray-900">{user?.displayName}</h2>
               <p className="text-sm text-gray-600">Admin User</p>
