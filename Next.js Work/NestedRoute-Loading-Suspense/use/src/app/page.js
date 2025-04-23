@@ -1,5 +1,6 @@
 
 import Loading from '@/component/product/loading'
+import Product from '@/component/product/product'
 
 import React, { Suspense } from 'react'
 

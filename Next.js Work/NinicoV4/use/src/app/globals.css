@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+
+
+:root {
+  --color-quick: #d61142;
+}
+
+.bg-quick {
+  background-color: var(--color-quick-access) ;
+}
+
+.text-quick {
+  color: var(--color-quick-access);
+}
+
+.border-quick {
+  border-color: var(--color-quick-access);
+}

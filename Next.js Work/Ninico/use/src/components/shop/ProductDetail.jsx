@@ -16,14 +16,11 @@ import { useRouter } from 'next/router';
 
 export default function ProductDetail() {
     const [quantity, setQuantity] = useState(1);
-    // const router = useRouter();
     const { id } = useParams();
 
-
-
     const product = products.find((p) => p.id === Number(id));
-    console.log("Products Data:", products);
-    console.log("Parsed ID:", Number(id), "Type:", typeof Number(id));
+    // console.log("Products Data:", products);
+    // console.log("Parsed ID:", Number(id), "Type:", typeof Number(id));
 
 
     if (!product) {
@@ -37,13 +34,13 @@ export default function ProductDetail() {
     return (
         <div className="flex py-20">
             {/* Left Section - Product Image */}
-            <div className="w-full md:w-1/2 p-4">
-            <Image src={product.img1} alt="Product det" width={500} height={500} />
-
+            <div className="w-full md:w-1/2 p-4 rounded-md h-[600px] overflow-y-auto scrollbar-hide">
+                <Image src={product.img1} alt="Product det" width={500} height={500} className='pb-3 rounded-md' />
+                <Image src={product.img2} alt="Product det" width={500} height={500} className='pb-3 rounded-md' />
             </div>
 
             {/* Right Section - Product Details */}
-            <div className="w-full md:w-1/2 p-4 flex flex-col space-y-4">
+            <div className="w-full md:w-1/2 p-4 flex flex-col space-y-4 sticky top-0">
                 {/* Category and Reviews */}
                 <div className="flex gap-5 items-center">
                     <span className="text-[var(--color-quick)] text-sm font-bold bg-pink-50 w-12 h-7 p-1">Dress</span>
@@ -147,7 +144,7 @@ export default function ProductDetail() {
             </div>
 
             {/* Right Sidebar - Additional Info */}
-            <div className="hidden md:block w-1/4 p-4 ">
+            <div className="hidden md:block w-1/4 p-4 sticky top-0">
                 <ul className="space-y-4 text-gray-600 text-sm">
                     <li className="group flex items-center space-x-4 border rounded h-[75.46px] w-[263.66px] border-gray-200 px-5 mb-5">
                         <Image

@@ -2,6 +2,7 @@ import React from 'react'
 import MainMenu from '../Home/MainMenu '
 import Breadcrumb from './Breadcrumb';
 import ProductDetail from './ProductDetail';
+import SetailsArea from './SetailsArea';
 
 const Shop = () => {
   return (
@@ -9,6 +10,7 @@ const Shop = () => {
        <MainMenu />
        <Breadcrumb />
        <ProductDetail />
+       <SetailsArea />
     </div>
   )
 }

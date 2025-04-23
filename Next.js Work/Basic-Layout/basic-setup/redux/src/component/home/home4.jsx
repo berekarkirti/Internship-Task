@@ -1,7 +1,9 @@
-// src/components/Home4.jsx
+"use client";
+
+import { toggleTheme } from "@/redux-counter/theme/themeSlice";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme } from "../redux/themeSlice";
+
 
 const Home4 = () => {
   const dispatch = useDispatch();
